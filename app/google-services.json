@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "714467986033",
+    "project_id": "theparking-76be1",
+    "storage_bucket": "theparking-76be1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714467986033:android:3c7b66e2bef944d4cae9d0",
+        "android_client_info": {
+          "package_name": "com.example.parkingnbeltran"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSe_HtjpznWIJDl7TErd8RzAJXnACZPAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714467986033:android:ccf84815e85a91a1cae9d0",
+        "android_client_info": {
+          "package_name": "com.lksnext.parkingNBeltran"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSe_HtjpznWIJDl7TErd8RzAJXnACZPAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714467986033:android:8a112c3250a19b6acae9d0",
+        "android_client_info": {
+          "package_name": "com.lksnext.parkingplantilla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSe_HtjpznWIJDl7TErd8RzAJXnACZPAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714467986033-t1hd51c26v55jnd7ut7l8hakmi0mlqh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
