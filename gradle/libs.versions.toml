@@ -14,6 +14,7 @@ navigationUiKtx = "2.7.7"
 firebaseAuthKtx = "23.0.0"
 firebaseBom = "33.1.1"
 gms = "4.4.2"
+firebaseFirestoreKtx = "25.0.0"
 
 
 [libraries]
@@ -32,6 +33,7 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
