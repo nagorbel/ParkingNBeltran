@@ -2,4 +2,13 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    id("org.sonarqube") version "4.4.1.3373"
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "nagorbel_ParkingNBeltran")
+        property("sonar.organization", "nagorbel")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
