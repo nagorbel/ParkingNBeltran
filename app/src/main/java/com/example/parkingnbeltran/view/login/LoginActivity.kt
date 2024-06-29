@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.parkingnbeltran.MainActivity
 import com.example.parkingnbeltran.databinding.ActivityLoginBinding
+import com.example.parkingnbeltran.view.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,12 +32,12 @@ class LoginActivity : AppCompatActivity() {
 
         //Acciones a realizar cuando el usuario clica el boton de crear cuenta (se cambia de pantalla)
         binding.createAccount.setOnClickListener { v ->
-//            val intent =
-//                Intent(
-//                    this@LoginActivity,
-//                    RegisterActivity::class.java
-//                )
-//            startActivity(intent)
+            val intent =
+                Intent(
+                    this@LoginActivity,
+                    RegisterActivity::class.java
+                )
+            startActivity(intent)
         }
 
         //Observamos la variable logged, la cual nos informara cuando el usuario intente hacer login y se
