@@ -19,7 +19,6 @@ class RegisterActivity : AppCompatActivity() {
 
         //Asignamos la vista/interfaz de registro
         binding = ActivityRegisterBinding.inflate(layoutInflater)
-
         setContentView(binding.getRoot())
 
         // Observamos los cambios en el LiveData del usuario

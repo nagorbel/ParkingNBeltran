@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.parkingnbeltran.MainActivity
 import com.example.parkingnbeltran.databinding.ActivityLoginBinding
 import com.example.parkingnbeltran.view.register.RegisterActivity
@@ -20,18 +19,20 @@ class LoginActivity : AppCompatActivity() {
 
         //Asignamos la vista/interfaz login (layout)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         //Acciones a realizar cuando el usuario clica el boton de login
-        binding.loginButton.setOnClickListener { v ->
+        binding.loginButton.setOnClickListener { _ ->
             val email: String = binding.emailText.getText().toString()
             val password: String = binding.passwordText.getText().toString()
             loginViewModel.loginUser(email, password)
         }
 
-        //Acciones a realizar cuando el usuario clica el boton de crear cuenta (se cambia de pantalla)
-        binding.createAccount.setOnClickListener { v ->
+        /*
+        Acciones a realizar cuando el usuario clica el boton de crear cuenta (se cambia a pantalla de
+        registro)
+        */
+        binding.createAccount.setOnClickListener { _ ->
             val intent =
                 Intent(
                     this@LoginActivity,
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     //Login Correcto
                     val intent =
                         Intent(
-                            this@LoginActivity,
+                            this,
                             MainActivity::class.java
                         )
                     startActivity(intent)
