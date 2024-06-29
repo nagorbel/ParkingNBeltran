@@ -7,7 +7,7 @@
     tools:context=".view.login.LoginActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -27,7 +27,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailText"

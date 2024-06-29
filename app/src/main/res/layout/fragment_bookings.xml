@@ -4,74 +4,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:padding="10dp"
             android:text="My Parking"
             android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButton"
+            android:id="@+id/toggleGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            app:singleSelection="true"
-            tools:ignore="MissingConstraints"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title">
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:singleSelection="true"
+            tools:ignore="MissingConstraints">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOngoing"
                 style="?attr/materialButtonOutlinedStyle"
-                android:id="@+id/all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ongoing"
-                />
+                android:text="Ongoing" />
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNext"
                 style="?attr/materialButtonOutlinedStyle"
-                android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"
-                />
+                android:text="Next" />
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCompleted"
                 style="?attr/materialButtonOutlinedStyle"
-                android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Completed"
-                />
+                android:text="Completed" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:padding="24dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_create_reservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/ic_baseline_add_24"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="32dp"
-        />
+        android:layout_margin="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
