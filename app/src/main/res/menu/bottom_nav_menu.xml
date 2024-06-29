@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_booking"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/baseline_format_list_bulleted_add_24"
-        android:title="@string/title_booking" />
+        android:title=""/>
 
     <item
-        android:id="@+id/navigation_colleagues"
+        android:id="@+id/navigation_dashboard"
         android:icon="@drawable/baseline_directions_car_filled_24"
-        android:title="@string/title_colleagues" />
+        android:title=""/>
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_notifications"
         android:icon="@drawable/baseline_account_circle_24"
-        android:title="@string/title_profile" />
+        android:title=""/>
 
 </menu>
