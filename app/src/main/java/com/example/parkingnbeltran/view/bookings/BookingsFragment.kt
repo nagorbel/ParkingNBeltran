@@ -16,7 +16,7 @@ import com.example.parkingnbeltran.domain.Type
 class BookingsFragment : Fragment() {
 
     private lateinit var binding: FragmentBookingsBinding
-    private val viewModel: BookingsViewModel by viewModels()
+    private val bookingViewModel: BookingsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -47,6 +47,10 @@ class BookingsFragment : Fragment() {
                 }
             }
         )
+
+        binding.FABAddBooking.setOnClickListener { _ ->
+            bookingViewModel.addBookingToFirestore()
+        }
         binding.recycler.layoutManager = LinearLayoutManager(context)
         binding.recycler.adapter = adapter
 

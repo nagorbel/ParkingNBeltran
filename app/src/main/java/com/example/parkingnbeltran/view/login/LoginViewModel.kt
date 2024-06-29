@@ -24,9 +24,9 @@ class LoginViewModel : ViewModel() {
     fun loginUser(email: String, password: String) {
         // Sign in an existing user
 
-        //TODO For testing purposes
-        logged.postValue(true)
-        return
+//        //TODO For testing purposes
+//        logged.postValue(true)
+//        return
 
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(executor) { task ->
