@@ -1,5 +1,6 @@
 package com.example.parkingnbeltran.view.bookings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.example.parkingnbeltran.databinding.FragmentBookingsBinding
 import com.example.parkingnbeltran.domain.Booking
 import com.example.parkingnbeltran.domain.BookingItem
 import com.example.parkingnbeltran.domain.Type
+import com.example.parkingnbeltran.view.newBookng.NewBookingActivity
+import com.example.parkingnbeltran.view.register.RegisterActivity
 import java.util.Collections
 
 class BookingsFragment : Fragment() {
@@ -49,11 +52,17 @@ class BookingsFragment : Fragment() {
         )
 
         binding.FABAddBooking.setOnClickListener { _ ->
-            bookingViewModel.addBookingToFirestore()
+            //bookingViewModel.addBookingToFirestore()
+            val intent =
+                Intent(
+                    requireContext(),
+                    NewBookingActivity::class.java
+                )
+            startActivity(intent)
         }
+
         binding.recycler.layoutManager = LinearLayoutManager(context)
         binding.recycler.adapter = adapter
-
         bookingViewModel.getBookings.observe(viewLifecycleOwner) {
             adapter.setItems(it)
         }

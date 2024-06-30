@@ -45,14 +45,9 @@ class DataRepository {
             "bookingId" to booking.bookingId,
             "startingHour" to booking.startingHour,
             "endingHour" to booking.endingHour,
-            "vehicle" to booking.vehicle,  // Assuming vehicleId is a String or some identifiable field
-            "space" to booking.space       // Assuming spaceId is a String or some identifiable field
+            "vehicle" to booking.vehicle,
+            "space" to booking.space
         )
-
-//        firestore.collection("bookings").document("booking1")
-//            .set(bookingMap)
-//            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-//            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
         val bookingsCollection = firestore.collection("bookings")
 
