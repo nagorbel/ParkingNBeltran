@@ -3,6 +3,7 @@ package com.example.parkingnbeltran.data
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.parkingnbeltran.domain.Booking
@@ -42,7 +43,6 @@ class DataRepository {
 
         // Convert Booking object to a map
         val bookingMap = hashMapOf(
-            "bookingId" to booking.bookingId,
             "startingHour" to booking.startingHour,
             "endingHour" to booking.endingHour,
             "vehicle" to booking.vehicle,
@@ -74,7 +74,6 @@ class DataRepository {
                 val bookingsList = mutableListOf<Booking>()
                 value?.forEach { document ->
                     val booking = Booking(
-                        bookingId = document.getLong("bookingId") ?: 0,
                         startingHour = document.getLong("startingHour") ?: 0L,
                         endingHour = document.getLong("endingHour") ?: 0L,
                         vehicle = document.get("vehicle")?.let { vehicle ->

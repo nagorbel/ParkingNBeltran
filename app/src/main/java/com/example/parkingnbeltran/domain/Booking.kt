@@ -3,7 +3,6 @@ import com.example.parkingnbeltran.domain.Space
 import com.example.parkingnbeltran.domain.Vehicle
 
 data class Booking(
-    val bookingId: Long,
     val startingHour: Long,
     val endingHour: Long,
     val vehicle: Vehicle,

@@ -5,20 +5,22 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    >
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:padding="10dp"
             android:text="Book Parking"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -37,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
+                app:singleSelection="true"
                 android:padding="16dp">
 
                 <!-- Botones para cada media hora -->
@@ -44,27 +47,31 @@
                     android:id="@+id/BtnCar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checkable="true"
                     android:text="Car"
-                    android:onClick="onHoraSeleccionada" />
+                     />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/BtnElectric"
                     android:layout_width="wrap_content"
+                    android:checkable="true"
                     android:layout_height="wrap_content"
                     android:text="Electric"
-                    android:onClick="onHoraSeleccionada" />
+                     />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/BtnMotor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checkable="true"
                     android:text="Motorcycle"
-                    android:onClick="onHoraSeleccionada" />
+                     />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/BtnDisabled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checkable="true"
                     android:text="Disabled"
-                    android:onClick="onHoraSeleccionada" />
+                     />
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -74,11 +81,6 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pick a date:"
-                android:textSize="18sp"/>
             <Button
                 android:id="@+id/BtnPickDate"
                 android:layout_width="wrap_content"
@@ -91,7 +93,7 @@
                 android:id="@+id/TVSelectedDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seledted Date"
+                android:text="Selected Date"
                 android:layout_marginLeft="16dp"/>
 
         </LinearLayout>
@@ -104,6 +106,7 @@
             android:paddingTop="16dp" />
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/CGHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -116,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="07:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
 
             <com.google.android.material.chip.Chip
@@ -123,6 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="07:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
 
             <com.google.android.material.chip.Chip
@@ -130,6 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="08:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
 
             <com.google.android.material.chip.Chip
@@ -137,162 +143,189 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="08:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn0900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="09:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn0930"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="09:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1030"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1130"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1200"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1230"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1330"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1400"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="14:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1430"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="14:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="15:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1530"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="15:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1600"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1630"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="17:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1730"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="17:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1800"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="18:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1830"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="18:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn1930"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn2000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn2030"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn2100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="21:00"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn2130"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="21:30"
+                android:checkable="true"
                 android:onClick="onHoraSeleccionada" />
         </com.google.android.material.chip.ChipGroup>
 

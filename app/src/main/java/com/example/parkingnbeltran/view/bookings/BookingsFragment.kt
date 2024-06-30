@@ -35,18 +35,18 @@ class BookingsFragment : Fragment() {
            Collections.emptyList(),
             object : BookingClickListener {
                 override fun onMoreTimeClick(item: BookingItem) {
-                    Toast.makeText(context, "More time ${item.id}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "More time ${item.date}", Toast.LENGTH_SHORT).show()
                 }
                 override fun onEndClick(item: BookingItem) {
-                    Toast.makeText(context, "End ${item.id}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "End ${item.date}", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onDeleteClick(item: BookingItem) {
-                    Toast.makeText(context, "Delete ${item.id}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Delete ${item.date}", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onUpdateClick(item: BookingItem) {
-                    Toast.makeText(context, "Update ${item.id}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Update ${item.date}", Toast.LENGTH_SHORT).show()
                 }
             }
         )

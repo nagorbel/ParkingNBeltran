@@ -21,7 +21,6 @@ class BookingsViewModel : ViewModel() {
         dataRepository.getBookingsFromFirestore().map { bookings ->
             bookings.map {
                     BookingItem(
-                        id = it.bookingId,
                         date = SimpleDateFormat("yyyy.MM.dd").format(it.startingHour),
                         time = SimpleDateFormat("HH:mm").format(it.startingHour),
                         progress = 50,
@@ -40,17 +39,6 @@ class BookingsViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    fun addBookingToFirestore() {
 
-        val newBooking = Booking(
-            bookingId = 1,
-            startingHour = System.currentTimeMillis(),  // Replace with your starting hour logic
-            endingHour = System.currentTimeMillis(),  // Replace with your ending hour logic
-            vehicle = Vehicle(1,"hola"),  // Replace with your actual vehicle ID logic
-            space = Space(1, SpaceType.CAR)   // Replace with your actual space ID logic
-        )
-
-        dataRepository.addBookingToFirestore(newBooking)
-    }
 
 }

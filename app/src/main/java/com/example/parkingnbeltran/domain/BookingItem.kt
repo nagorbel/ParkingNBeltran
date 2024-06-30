@@ -1,7 +1,6 @@
 package com.example.parkingnbeltran.domain
 
 data class BookingItem(
-    val id: Long,
     val date: String,
     val time: String,
     val progress: Int,
