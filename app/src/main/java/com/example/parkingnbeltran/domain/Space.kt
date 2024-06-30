@@ -1,7 +1,7 @@
 package com.example.parkingnbeltran.domain
 
 data class Space(
-    val spaceId: Int,
+    val spaceId: Long,
     val type: SpaceType,
 )
 

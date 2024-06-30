@@ -6,9 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parkingnbeltran.databinding.ItemBookingBinding
 import com.example.parkingnbeltran.domain.BookingItem
 
-class BookingsAdapter(private val items: List<BookingItem>,
-                      private val clickListener: BookingClickListener):
+class BookingsAdapter(
+    private var items: List<BookingItem>,
+    private val clickListener: BookingClickListener):
     RecyclerView.Adapter<BookingsAdapter.BookingViewHolder>() {
+
+    fun setItems(newItems: List<BookingItem>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

@@ -14,6 +14,9 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class DataRepository {
 
@@ -40,11 +43,10 @@ class DataRepository {
         // Convert Booking object to a map
         val bookingMap = hashMapOf(
             "bookingId" to booking.bookingId,
-            "date" to booking.date,
             "startingHour" to booking.startingHour,
             "endingHour" to booking.endingHour,
-            "vehicleId" to booking.vehicleId,  // Assuming vehicleId is a String or some identifiable field
-            "spaceId" to booking.spaceId       // Assuming spaceId is a String or some identifiable field
+            "vehicle" to booking.vehicle,  // Assuming vehicleId is a String or some identifiable field
+            "space" to booking.space       // Assuming spaceId is a String or some identifiable field
         )
 
 //        firestore.collection("bookings").document("booking1")
@@ -64,39 +66,44 @@ class DataRepository {
             }
     }
 
-    fun getBookingsFromFirestore (){
-        firestore.collection("booking")
-            .get()
-            .addOnSuccessListener { result ->
-                bookingsList.clear()
-                for (document in result) {
-                    val booking = document.toObject(Booking::class.java).copy(
-                        bookingId = document.getLong("bookingId")?.toInt() ?: 0,
-                        date = document.getLong("date") ?: 0L,
+    fun getBookingsFromFirestore(): LiveData<List<Booking>> {
+        val bookingsLiveData = MutableLiveData<List<Booking>>()
+
+        firestore.collection("bookings")
+            .addSnapshotListener { value, e ->
+                if (e != null) {
+                    Log.e("NAGO", e.message.toString())
+                    return@addSnapshotListener
+                }
+
+                val bookingsList = mutableListOf<Booking>()
+                value?.forEach { document ->
+                    val booking = Booking(
+                        bookingId = document.getLong("bookingId") ?: 0,
                         startingHour = document.getLong("startingHour") ?: 0L,
                         endingHour = document.getLong("endingHour") ?: 0L,
-                        vehicleId = document.get("vehicleId")?.let { vehicle ->
+                        vehicle = document.get("vehicle")?.let { vehicle ->
                             Vehicle(
-                                vehicleId = (vehicle as Map<*, *>)["vehicleId"]?.toString()?.toInt() ?: 0,
+                                vehicleId = (vehicle as Map<*, *>)["vehicle"]?.toString()?.toLong() ?: 0,
                                 imgVehicle = vehicle["imgVehicle"] as? String ?: ""
                             )
                         } ?: Vehicle(0, ""),
-                        spaceId = document.get("spaceId")?.let { space ->
+                        space = document.get("space")?.let { space ->
                             Space(
-                                spaceId = (space as Map<*, *>)["spaceId"]?.toString()?.toInt() ?: 0,
+                                spaceId = (space as Map<*, *>)["space"]?.toString()?.toLong() ?: 0,
                                 type = SpaceType.valueOf(space["type"] as? String ?: "CAR")
                             )
                         } ?: Space(0, SpaceType.CAR)
                     )
                     bookingsList.add(booking)
-                    Log.d(TAG, "${document.id} => ${document.data}")
+                    Log.d("NAGO", "${document.id} => ${document.data}")
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
+                bookingsLiveData.value = bookingsList
             }
 
+        return bookingsLiveData
     }
+
 
 
 
