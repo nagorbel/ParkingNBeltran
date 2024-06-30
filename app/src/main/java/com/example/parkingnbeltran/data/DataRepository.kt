@@ -1,21 +1,33 @@
 package com.example.parkingnbeltran.data
 
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.parkingnbeltran.domain.Booking
+import com.example.parkingnbeltran.domain.Space
+import com.example.parkingnbeltran.domain.SpaceType
+import com.example.parkingnbeltran.domain.Vehicle
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-//import com.example.parkingnbeltran.domain.callback
-//import com.example.parkingNBeltran.domain.Hora
-//import com.example.parkingNBeltran.domain.Reserva
-
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class DataRepository {
+
     private val mAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    val currentUser: FirebaseUser?
+        get() = mAuth.currentUser
+
+    val bookingsList = mutableListOf<Booking>()
 
     fun registerUser(email: String?, password: String?): Task<AuthResult> {
         return mAuth.createUserWithEmailAndPassword(email!!, password!!)
@@ -27,8 +39,67 @@ class DataRepository {
         return firestore.collection("users").document(userId).set(user)
     }
 
-    val currentUser: FirebaseUser?
-        get() = mAuth.currentUser
+    fun addBookingToFirestore(booking: Booking) {
+
+        // Convert Booking object to a map
+        val bookingMap = hashMapOf(
+            "startingHour" to booking.startingHour,
+            "endingHour" to booking.endingHour,
+            "vehicle" to booking.vehicle,
+            "space" to booking.space
+        )
+
+        val bookingsCollection = firestore.collection("bookings")
+
+        bookingsCollection
+            .add(bookingMap)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
+
+    fun getBookingsFromFirestore(): LiveData<List<Booking>> {
+        val bookingsLiveData = MutableLiveData<List<Booking>>()
+
+        firestore.collection("bookings")
+            .addSnapshotListener { value, e ->
+                if (e != null) {
+                    Log.e("NAGO", e.message.toString())
+                    return@addSnapshotListener
+                }
+
+                val bookingsList = mutableListOf<Booking>()
+                value?.forEach { document ->
+                    val booking = Booking(
+                        startingHour = document.getLong("startingHour") ?: 0L,
+                        endingHour = document.getLong("endingHour") ?: 0L,
+                        vehicle = document.get("vehicle")?.let { vehicle ->
+                            Vehicle(
+                                vehicleId = (vehicle as Map<*, *>)["vehicle"]?.toString()?.toLong() ?: 0,
+                                imgVehicle = vehicle["imgVehicle"] as? String ?: ""
+                            )
+                        } ?: Vehicle(0, ""),
+                        space = document.get("space")?.let { space ->
+                            Space(
+                                spaceId = (space as Map<*, *>)["space"]?.toString()?.toLong() ?: 0,
+                                type = SpaceType.valueOf(space["type"] as? String ?: "CAR")
+                            )
+                        } ?: Space(0, SpaceType.CAR)
+                    )
+                    bookingsList.add(booking)
+                    Log.d("NAGO", "${document.id} => ${document.data}")
+                }
+                bookingsLiveData.value = bookingsList
+            }
+
+        return bookingsLiveData
+    }
+
+
+
 
 //    val tiposPlazas: MutableLiveData<List<String>?>
 //        // Método para obtener tipos de plazas desde Firestore
@@ -68,42 +139,41 @@ class DataRepository {
 //        return disponibilidadLiveData
 //    }
 
-    // Método para crear una reserva
-//    fun crearReserva(reserva: Reserva): LiveData<Boolean> {
-//        val successLiveData = MutableLiveData<Boolean>()
-//
-//        if ((reserva.getHoraFin().getHoraFin()) - (reserva.getHoraInicio()
-//                .getHoraInicio()) > 9 * 60 * 60 * 1000
-//        ) {
-//            successLiveData.setValue(false) // Más de 9 horas
-//            return successLiveData
-//        }
-//
-//        if (reserva.getHoraInicio()
-//                .getHoraInicio() > System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000
-//        ) {
-//            successLiveData.setValue(false) // Más de 7 días
-//            return successLiveData
-//        }
-//
-//        firestore.collection("reservas")
-//            .add(reserva)
-//            .addOnSuccessListener { documentReference -> successLiveData.setValue(true) }
-//            .addOnFailureListener { e -> successLiveData.setValue(false) }
-//
-//        return successLiveData
+     //Método para crear una reserva
+    fun crearReserva(reserva: Booking): LiveData<Boolean> {
+        val successLiveData = MutableLiveData<Boolean>()
+
+        if ((reserva.endingHour) - (reserva.startingHour) > 9 * 60 * 60 * 1000)
+        {
+            successLiveData.setValue(false) // Más de 9 horas
+            return successLiveData
+        }
+
+        if (reserva.startingHour > System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)
+        {
+            successLiveData.setValue(false) // Más de 7 días
+            return successLiveData
+        }
+
+        firestore.collection("reservas")
+            .add(reserva)
+            .addOnSuccessListener { documentReference -> successLiveData.setValue(true) }
+            .addOnFailureListener { e -> successLiveData.setValue(false) }
+
+        return successLiveData
+    }
+
+//    companion object {
+//        @get:Synchronized
+//        var instance: DataRepository? = null
+//            //Creación de la instancia en caso de que no exista.
+//            get() {
+//                if (field == null) {
+//                    field = DataRepository()
+//                }
+//                return field
+//            }
+//            private set
 //    }
 
-    companion object {
-        @get:Synchronized
-        var instance: DataRepository? = null
-            //Creación de la instancia en caso de que no exista.
-            get() {
-                if (field == null) {
-                    field = DataRepository()
-                }
-                return field
-            }
-            private set
-    }
 }

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Book Parking"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select the type of parking space:"
+            android:textSize="18sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                app:singleSelection="true"
+                android:padding="16dp">
+
+                <!-- Botones para cada media hora -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/BtnCar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Car"
+                     />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/BtnElectric"
+                    android:layout_width="wrap_content"
+                    android:checkable="true"
+                    android:layout_height="wrap_content"
+                    android:text="Electric"
+                     />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/BtnMotor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Motorcycle"
+                     />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/BtnDisabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Disabled"
+                     />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/BtnPickDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Pick Date"
+                android:textAllCaps="false"
+                android:layout_marginLeft="16dp"/>
+            <TextView
+                android:id="@+id/TVSelectedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Date"
+                android:layout_marginLeft="16dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available time slots (choose the starting hour and end):"
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/CGHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp">
+
+            <!-- Botones para cada media hora -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0730"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0830"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0900"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn0930"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1030"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1130"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1200"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1230"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1300"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1330"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1400"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1430"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1530"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1630"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1730"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1830"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1900"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn1930"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn2000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn2030"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn2100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21:00"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btn2130"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21:30"
+                android:checkable="true"
+                android:onClick="onHoraSeleccionada" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting Hour: "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ending Hour: "
+                android:layout_marginLeft="16dp"/>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book!"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFfindColleagues"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Theese time slots do not work for you? Find nearby colleagues and share a Car ;)"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
