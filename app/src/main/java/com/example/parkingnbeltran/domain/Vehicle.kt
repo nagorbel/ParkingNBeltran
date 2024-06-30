@@ -1,6 +1,6 @@
 package com.example.parkingnbeltran.domain
 
 data class Vehicle(
-    val VehicleId: Int,
+    val vehicleId: Int,
     val imgVehicle: String,
 )

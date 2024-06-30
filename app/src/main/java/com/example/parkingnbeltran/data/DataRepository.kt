@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.parkingnbeltran.domain.Booking
+import com.example.parkingnbeltran.domain.Space
+import com.example.parkingnbeltran.domain.SpaceType
+import com.example.parkingnbeltran.domain.Vehicle
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +16,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class DataRepository {
+
     private val mAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    val currentUser: FirebaseUser?
+        get() = mAuth.currentUser
+
+    val bookingsList = mutableListOf<Booking>()
 
     fun registerUser(email: String?, password: String?): Task<AuthResult> {
         return mAuth.createUserWithEmailAndPassword(email!!, password!!)
@@ -25,9 +34,6 @@ class DataRepository {
         user["name"] = name
         return firestore.collection("users").document(userId).set(user)
     }
-
-    val currentUser: FirebaseUser?
-        get() = mAuth.currentUser
 
     fun addBookingToFirestore(booking: Booking) {
 
@@ -56,6 +62,40 @@ class DataRepository {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+    }
+
+    fun getBookingsFromFirestore (){
+        firestore.collection("booking")
+            .get()
+            .addOnSuccessListener { result ->
+                bookingsList.clear()
+                for (document in result) {
+                    val booking = document.toObject(Booking::class.java).copy(
+                        bookingId = document.getLong("bookingId")?.toInt() ?: 0,
+                        date = document.getLong("date") ?: 0L,
+                        startingHour = document.getLong("startingHour") ?: 0L,
+                        endingHour = document.getLong("endingHour") ?: 0L,
+                        vehicleId = document.get("vehicleId")?.let { vehicle ->
+                            Vehicle(
+                                vehicleId = (vehicle as Map<*, *>)["vehicleId"]?.toString()?.toInt() ?: 0,
+                                imgVehicle = vehicle["imgVehicle"] as? String ?: ""
+                            )
+                        } ?: Vehicle(0, ""),
+                        spaceId = document.get("spaceId")?.let { space ->
+                            Space(
+                                spaceId = (space as Map<*, *>)["spaceId"]?.toString()?.toInt() ?: 0,
+                                type = SpaceType.valueOf(space["type"] as? String ?: "CAR")
+                            )
+                        } ?: Space(0, SpaceType.CAR)
+                    )
+                    bookingsList.add(booking)
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+
     }
 
 
