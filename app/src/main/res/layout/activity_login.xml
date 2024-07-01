@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity">
 
-    <TextView
+
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:text="TheParking"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/tp_text_bg_white_cut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +25,7 @@
         android:id="@+id/email"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:hint="Enter your email*"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
