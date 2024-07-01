@@ -8,15 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.parkingnbeltran.R
 import com.example.parkingnbeltran.databinding.FragmentBookingsBinding
-import com.example.parkingnbeltran.domain.Booking
 import com.example.parkingnbeltran.domain.BookingItem
-import com.example.parkingnbeltran.domain.Type
 import com.example.parkingnbeltran.view.newBookng.NewBookingActivity
-import com.example.parkingnbeltran.view.register.RegisterActivity
 import java.util.Collections
 
 class BookingsFragment : Fragment() {
@@ -52,7 +47,6 @@ class BookingsFragment : Fragment() {
         )
 
         binding.FABAddBooking.setOnClickListener { _ ->
-            //bookingViewModel.addBookingToFirestore()
             val intent =
                 Intent(
                     requireContext(),

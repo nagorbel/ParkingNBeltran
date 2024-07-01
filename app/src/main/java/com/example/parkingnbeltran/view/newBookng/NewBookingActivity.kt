@@ -54,13 +54,13 @@ class NewBookingActivity : AppCompatActivity(){
     fun showDatePickerDialog(){
 
         val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+        val year = c[Calendar.YEAR]
+        val month = c[Calendar.MONTH]
+        val day = c[Calendar.DAY_OF_MONTH]
 
         val datePickerDialog = DatePickerDialog(
             this,
-            { view, year, monthOfYear, dayOfMonth ->
+            { _, year, monthOfYear, dayOfMonth ->
                 binding.TVSelectedDate.text =
                     (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                 selectedDate = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)

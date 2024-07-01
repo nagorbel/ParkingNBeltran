@@ -1,6 +1,4 @@
 package com.example.parkingnbeltran.domain
-import com.example.parkingnbeltran.domain.Space
-import com.example.parkingnbeltran.domain.Vehicle
 
 data class Booking(
     val startingHour: Long,

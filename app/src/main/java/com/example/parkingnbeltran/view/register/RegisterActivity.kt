@@ -26,7 +26,7 @@ class RegisterActivity : AppCompatActivity() {
             if (user != null) {
                 Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT)
                     .show()
-                registerViewModel.getUserLiveData().observe(this) { userLiveData ->
+                registerViewModel.getUserLiveData().observe(this) { _ ->
                     Toast.makeText(
                         this,
                         ("Bienvenido " + user.getDisplayName()).toString() + "!",
@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         // Agregamos un listener al botón de registro
-        binding.btnRegister.setOnClickListener { v ->
+        binding.btnRegister.setOnClickListener { _ ->
             val name: String =
                 Objects.requireNonNull(binding.nametext.getText()).toString()
                     .trim { it <= ' ' }

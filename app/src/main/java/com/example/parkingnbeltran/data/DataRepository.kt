@@ -3,7 +3,6 @@ package com.example.parkingnbeltran.data
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.parkingnbeltran.domain.Booking
@@ -15,9 +14,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class DataRepository {
 
@@ -76,13 +72,13 @@ class DataRepository {
                     val booking = Booking(
                         startingHour = document.getLong("startingHour") ?: 0L,
                         endingHour = document.getLong("endingHour") ?: 0L,
-                        vehicle = document.get("vehicle")?.let { vehicle ->
+                        vehicle = document["vehicle"]?.let { vehicle ->
                             Vehicle(
                                 vehicleId = (vehicle as Map<*, *>)["vehicle"]?.toString()?.toLong() ?: 0,
                                 imgVehicle = vehicle["imgVehicle"] as? String ?: ""
                             )
                         } ?: Vehicle(0, ""),
-                        space = document.get("space")?.let { space ->
+                        space = document["space"]?.let { space ->
                             Space(
                                 spaceId = (space as Map<*, *>)["space"]?.toString()?.toLong() ?: 0,
                                 type = SpaceType.valueOf(space["type"] as? String ?: "CAR")
@@ -157,8 +153,8 @@ class DataRepository {
 
         firestore.collection("reservas")
             .add(reserva)
-            .addOnSuccessListener { documentReference -> successLiveData.setValue(true) }
-            .addOnFailureListener { e -> successLiveData.setValue(false) }
+            .addOnSuccessListener { _ -> successLiveData.setValue(true) }
+            .addOnFailureListener { _ -> successLiveData.setValue(false) }
 
         return successLiveData
     }
