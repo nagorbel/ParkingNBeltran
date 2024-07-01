@@ -41,26 +41,22 @@
                 android:id="@+id/BtnRenteDon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Errenteria - Donostia"
-                android:onClick="onRutaSeleccionada" />
+                android:text="Errenteria - Donostia"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/BtnRenteGaraia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Errenteria - Garaia"
-                android:onClick="onRutaSeleccionada" />
+                android:text="Errenteria - Garaia"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/BtnRenteZamudio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Errenteria - Zamudio"
-                android:onClick="onRutaSeleccionada" />
+                android:text="Errenteria - Zamudio"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/BtnElectric"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Donostia - Errenteria"
-                android:onClick="onRutaSeleccionada" />
+                android:text="Donostia - Errenteria" />
         </com.google.android.material.chip.ChipGroup>
 
         <include

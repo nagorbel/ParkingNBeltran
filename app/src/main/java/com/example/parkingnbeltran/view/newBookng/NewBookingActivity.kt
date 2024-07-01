@@ -80,7 +80,7 @@ class NewBookingActivity : AppCompatActivity(){
         }
     }
 
-    private fun onHoraSeleccionada(view: View) {
+    fun onHoraSeleccionada(view: View) {
         val chip = view as Chip
         val selectedTime = chip.text.toString()
 
