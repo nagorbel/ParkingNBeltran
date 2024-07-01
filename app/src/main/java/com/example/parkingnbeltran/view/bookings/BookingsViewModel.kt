@@ -5,12 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.example.parkingnbeltran.data.DataRepository
-import com.example.parkingnbeltran.domain.Booking
 import com.example.parkingnbeltran.domain.BookingItem
-import com.example.parkingnbeltran.domain.Space
-import com.example.parkingnbeltran.domain.SpaceType
 import com.example.parkingnbeltran.domain.Type
-import com.example.parkingnbeltran.domain.Vehicle
 import java.text.SimpleDateFormat
 
 class BookingsViewModel : ViewModel() {

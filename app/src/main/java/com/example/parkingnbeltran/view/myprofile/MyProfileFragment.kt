@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.parkingnbeltran.databinding.FragmentMycolleaguesBinding
 import com.example.parkingnbeltran.databinding.FragmentMyprofileBinding
-import com.example.parkingnbeltran.databinding.FragmentNotificationsBinding
 
 class MyProfileFragment : Fragment() {
 
@@ -25,7 +22,7 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val myProfileViewModel =
-            ViewModelProvider(this).get(MyProfileViewModel::class.java)
+            ViewModelProvider(this)[MyProfileViewModel::class.java]
 
         _binding = FragmentMyprofileBinding.inflate(inflater, container, false)
         val root: View = binding.root
