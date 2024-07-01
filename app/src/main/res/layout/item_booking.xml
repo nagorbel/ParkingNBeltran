@@ -39,7 +39,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
-                android:src="@{bookingItem.image}"
+                android:src="@drawable/aliceblue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/aliceblue" />
@@ -106,7 +106,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/hour"
-                tools:progress="50" />
+                tools:progress="20" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/toggleButtonTime"
