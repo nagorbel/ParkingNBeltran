@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.parkingnbeltran.view.dashboard.DashboardFragment"
+        android:name="com.example.parkingnbeltran.view.mycolleagues.MyColleaguesFragment"
         android:label="@string/title_colleagues"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.parkingnbeltran.view.notifications.NotificationsFragment"
+        android:name="com.example.parkingnbeltran.view.myprofile.MyProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
