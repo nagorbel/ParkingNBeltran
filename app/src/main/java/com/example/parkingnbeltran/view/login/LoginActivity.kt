@@ -3,42 +3,42 @@ package com.example.parkingnbeltran.view.login
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.parkingnbeltran.MainActivity
 import com.example.parkingnbeltran.databinding.ActivityLoginBinding
+import com.example.parkingnbeltran.view.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Asignamos la vista/interfaz login (layout)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
-        //Asignamos el viewModel de login
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-
         //Acciones a realizar cuando el usuario clica el boton de login
-        binding.loginButton.setOnClickListener { v ->
+        binding.loginButton.setOnClickListener { _ ->
             val email: String = binding.emailText.getText().toString()
             val password: String = binding.passwordText.getText().toString()
             loginViewModel.loginUser(email, password)
         }
 
-        //Acciones a realizar cuando el usuario clica el boton de crear cuenta (se cambia de pantalla)
-        binding.createAccount.setOnClickListener { v ->
-//            val intent =
-//                Intent(
-//                    this@LoginActivity,
-//                    RegisterActivity::class.java
-//                )
-//            startActivity(intent)
+        /*
+        Acciones a realizar cuando el usuario clica el boton de crear cuenta (se cambia a pantalla de
+        registro)
+        */
+        binding.createAccount.setOnClickListener { _ ->
+            val intent =
+                Intent(
+                    this@LoginActivity,
+                    RegisterActivity::class.java
+                )
+            startActivity(intent)
         }
 
         //Observamos la variable logged, la cual nos informara cuando el usuario intente hacer login y se
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     //Login Correcto
                     val intent =
                         Intent(
-                            this@LoginActivity,
+                            this,
                             MainActivity::class.java
                         )
                     startActivity(intent)

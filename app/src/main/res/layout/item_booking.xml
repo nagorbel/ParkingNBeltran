@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.parkingnbeltran.domain.Type" />
+        <import type="android.view.View"/>
+        <variable
+            name="bookingItem"
+            type="com.example.parkingnbeltran.domain.BookingItem" />
+
+        <variable
+            name="clickListener"
+            type="com.example.parkingnbeltran.view.bookings.BookingClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/myCarAliceBlue"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@{bookingItem.image}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/aliceblue" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Date: "
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/myCarAliceBlue"
+                app:layout_constraintTop_toTopOf="@+id/myCarAliceBlue" />
+
+            <TextView
+                android:id="@+id/dateInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{bookingItem.date}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toTopOf="@+id/date"
+                tools:text="2024-06-29" />
+
+            <TextView
+                android:id="@+id/hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Hour: "
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/myCarAliceBlue"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/hourInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{bookingItem.time}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/dateInfo"
+                tools:text="23:00" />
+
+            <ProgressBar
+                android:id="@+id/progressBarTime"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:max="100"
+                android:progress="@{bookingItem.progress}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/hour"
+                tools:progress="50" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButtonTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBarTime"
+                app:singleSelection="true"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/BtnMoreTime"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> clickListener.onMoreTimeClick(bookingItem)}"
+                    android:text="More Time"
+                    android:visibility="@{bookingItem.type == Type.ONGOING ? View.VISIBLE : View.GONE}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/BtnEnd"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> clickListener.onEndClick(bookingItem)}"
+                    android:text="End"
+                    android:visibility="@{bookingItem.type == Type.ONGOING ? View.VISIBLE : View.GONE}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/BtnDelete"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> clickListener.onDeleteClick(bookingItem)}"
+                    android:text="Delete"
+                    android:visibility="@{bookingItem.type == Type.NEXT ? View.VISIBLE : View.GONE}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/BtnUpdate"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> clickListener.onUpdateClick(bookingItem)}"
+                    android:text="Update"
+                    android:visibility="@{bookingItem.type == Type.NEXT ? View.VISIBLE : View.GONE}" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+
+
+            </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
